@@ -1,44 +1,36 @@
 <template>
     <div>
-        <h1>Launches Page</h1>
-
         <div>
             <h1 class="text-4xl mb-3">Launches</h1>
-
-            <div class="bg-white p-4 rounded mt-5 mb-7 text-gray-500">
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-2">
-                    <div class="">
-                        <label for="by-rocket-name" class="mb-1 inline-block">Search by Rocket name </label>
-                        <input type="text" placeholder="Enter rocket name..." class="block w-full border-2 px-2 py-1 rounded" id="by-rocket-name" @keyup="({ target: { value } }) => debounceSearchInput(value)" />
-                    </div>
-                    <div class="">
+            <v-card class="mb-5 px-3" elevation="1">
+                <v-row align="center">
+                    <v-col cols="12" sm="6" md="3">
+                        <label for="by-rocket-name" class="mb-1">Search by Rocket name </label>
+                        <v-text-field single-line class="pt-0 mt-0" label="Enter rocket name..." @keyup="({ target: { value } }) => debounceSearchInput(value)"></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="3">
                         <label for="by-launch-date" class="mb-1 inline-block">Launch Date </label>
-                        <select class="block w-full border-2 px-2 py-1 rounded" id="by-launch-date" v-model="searchParams.searchByLaunchDate">
-                            <option value="" selected>All</option>
-                            <option value="week">Last week</option>
-                            <option value="month">Last month</option>
-                            <option value="years">Last year</option>
-                        </select>
-                    </div>
-                    <div class="">
+                        <v-select :items="launchDateFilter" item-text="key" item-value="value" v-model="searchParams.searchByLaunchDate" class="pt-0 mt-0"></v-select>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="3">
                         <label for="by-launch-status" class="mb-1 inline-block">Launch Status </label>
-                        <select class="block w-full border-2 px-2 py-1 rounded" id="by-launch-status" v-model="searchParams.searchByLaunchStatus">
-                            <option value="" selected>All</option>
-                            <option value="success">Success</option>
-                            <option value="failures">Failure</option>
-                        </select>
-                    </div>
-                    <div class="">
-                        <label for="by-is-upcoming" class="mb-1 inline-block">Is upcoming? </label>
-                        <input type="checkbox" class="block px-2 py-1 rounded text-indigo-500 w-8 h-8 mr-2 focus:ring-indigo-400 focus:ring-opacity-25 border border-gray-300" id="by-is-upcoming" v-model="searchParams.searchByIsUpcoming" />
-                    </div>
-                </div>
-            </div>
+                        <v-select :items="launchStatusFilter" item-text="key" item-value="value" v-model="searchParams.searchByLaunchStatus" class="pt-0 mt-0"></v-select>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="3">
+                        <label for="" class="mb-1 inline-block">Is upcoming? </label>
+                        <v-simple-checkbox v-model="searchParams.searchByIsUpcoming" class="pt-0 mt-0"></v-simple-checkbox>
+                    </v-col>
+                </v-row>
+            </v-card>
 
-            <v-progress-circular v-if="isLoading" size="50" color="blue-grey" indeterminate></v-progress-circular>
-            <div v-if="filteredLaunches && filteredLaunches.length" class="launches-list grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-                <launch-card v-for="launch in filteredLaunches" :key="launch.id" :launch="launch" />
+            <div class="text-center">
+                <v-progress-circular v-if="isLoading" size="50" color="blue-grey" indeterminate></v-progress-circular>
             </div>
+            <v-row v-if="filteredLaunches && filteredLaunches.length" align="stretch">
+                <v-col v-for="launch in filteredLaunches" :key="launch.id" cols="12" sm="6" md="4" lg="3" class="d-flex">
+                    <launch-card :launch="launch" />
+                </v-col>
+            </v-row>
 
             <p v-else-if="!filteredLaunches.length && !isLoading" class="text-center text-red-500 font-bold text-3xl sm:text-5xl">No result found!</p>
             <p v-if="error" class="mt-64 text-red-500 font-bold text-center text-3xl sm:text-5xl">{{ error }}</p>
@@ -69,7 +61,39 @@ export default {
                 searchByRocketName: "",
                 searchByLaunchDate: "",
                 searchByIsUpcoming: false
-            }
+            },
+            launchDateFilter: [
+                {
+                    key: "All",
+                    value: ""
+                },
+                {
+                    key: "Last week",
+                    value: "week"
+                },
+                {
+                    key: "Last month",
+                    value: "month"
+                },
+                {
+                    key: "Last year",
+                    value: "year"
+                }
+            ],
+            launchStatusFilter: [
+                {
+                    key: "All",
+                    value: ""
+                },
+                {
+                    key: "Success",
+                    value: "success"
+                },
+                {
+                    key: "Failure",
+                    value: "failures"
+                }
+            ]
         };
     },
     methods: {

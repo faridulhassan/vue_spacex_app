@@ -1,7 +1,9 @@
 <template>
     <div>
         <h1 class="text-4xl mb-3">Launchpads</h1>
-        <v-progress-circular v-if="isLoading" size="50" color="blue-grey" indeterminate></v-progress-circular>
+        <div class="text-center">
+            <v-progress-circular v-if="isLoading" size="50" color="blue-grey" indeterminate></v-progress-circular>
+        </div>
         <LeafletMap v-if="launchpads && launchpads.length" :center="center" :data="launchpads" />
         <p v-else-if="error" class="mt-64 text-red-500 font-bold text-center text-3xl sm:text-5xl">{{ error }}</p>
     </div>

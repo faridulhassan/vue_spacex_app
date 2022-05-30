@@ -1,4 +1,8 @@
-<template><div :id="`map-container-${uid()}`" class="w-full bg-gray-300 rounded-sm" style="height: 700px" ref="container" /></template>
+<template>
+    <v-card class="pa-2">
+        <div :id="`map-container-${uid()}`" class="w-full bg-gray-300 rounded-sm" style="height: 600px" ref="container" />
+    </v-card>
+</template>
 
 <script>
 import * as L from "leaflet";

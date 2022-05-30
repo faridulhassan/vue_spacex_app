@@ -1,74 +1,78 @@
 <template>
     <div>
-        <h1 class="text-h3">Company Info Page</h1>
-        <v-progress-circular size="50" color="blue-grey" indeterminate v-if="isLoading"></v-progress-circular>
+        <h1 class="text-4xl mb-3">About the company</h1>
+        <div class="text-center">
+            <v-progress-circular v-if="isLoading" size="50" color="blue-grey" indeterminate></v-progress-circular>
+        </div>
 
         <div v-if="company_info">
-            <div class="flex flex-col sm:flex-row -mx-3 mb-8">
-                <div class="basis-1/2 px-3 mb-4">
-                    <h1 class="text-4xl mb-3">{{ company_info.name }}</h1>
-                    <div class="bg-white p-4 rounded mt-5 mb-7 text-gray-500 shadow h-auto sm:h-56">
-                        <p>{{ company_info.summary }}</p>
-                    </div>
-                </div>
-                <div class="basis-1/2 px-3 mb-4">
-                    <h2 class="text-4xl mb-3">Core Persons</h2>
-                    <div class="bg-white px-4 rounded mt-5 mb-7 text-gray-500 shadow">
-                        <ul>
-                            <li class="border-b border-gray-200 px-4 py-4">
-                                <b>CEO</b>
-                                {{ company_info.ceo }}
-                            </li>
-                            <li class="border-b border-gray-200 px-4 py-4">
-                                <b>CTO</b>
-                                {{ company_info.cto }}
-                            </li>
-                            <li class="border-b border-gray-200 px-4 py-4">
-                                <b>COO</b>
-                                {{ company_info.coo }}
-                            </li>
-                            <li class="border-b-0 border-gray-200 px-4 py-4">
-                                <b>CTO Propulsion</b>
-                                {{ company_info.cto_propulsion }}
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex flex-col sm:flex-row -mx-3 mt-8">
-                <div class="basis-1/2 px-3 mb-4">
-                    <h2 class="text-4xl mb-3">Company Stats</h2>
-
-                    <div class="bg-white px-4 rounded mt-5 text-gray-500 shadow">
-                        <ul>
-                            <li class="border-b border-gray-200 px-4 py-4">
-                                <b> {{ company_info.founded }}</b> founded
-                            </li>
-                            <li class="border-b border-gray-200 px-4 py-4">
-                                <b> {{ company_info.employees }}</b> Employees
-                            </li>
-                            <li class="border-b border-gray-200 px-4 py-4">
-                                <b> {{ company_info.vehicles }}</b> Vehicles
-                            </li>
-                            <li class="border-b-0 border-gray-200 px-4 py-4">
-                                <b> ${{ valuation }}</b> valuation
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="basis-1/2 px-3 mb-4">
-                    <h2 class="text-4xl mb-3">Contact Address</h2>
-                    <div class="bg-white rounded mt-5 text-gray-500 shadow p-4 h-auto sm:h-56">
-                        <p>{{ `${company_info.headquarters.address}, ${company_info.headquarters.city}, ${company_info.headquarters.state}` }}</p>
-                        <ul class="social_links inline-flex mt-3">
-                            <li class="mr-3" v-for="[title, link] in Object.entries(company_info.links)" :key="title" style="width: 24px">
-                                <a :href="link" target="_blank" class="w-6 h-6 inline-block" v-html="social_icons[title] || social_icons.website"></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <v-row justify="center">
+                <v-col cols="12" sm="6" md="4" class="d-sm-flex">
+                    <v-card class="flex-fill">
+                        <h2 class="text-4xl px-4 py-3 blue-grey lighten-5">{{ company_info.name }}</h2>
+                        <div class="bg-white pa-3">
+                            <p class="mb-0">{{ company_info.summary }}</p>
+                        </div>
+                    </v-card>
+                </v-col>
+                <v-col cols="12" sm="6" md="4" class="d-sm-flex">
+                    <v-card class="flex-fill">
+                        <h2 class="text-4xl px-4 py-3 blue-grey lighten-5">Core Persons</h2>
+                        <v-list class="py-0">
+                            <v-divider />
+                            <v-list-item>
+                                <v-list-content><b class="mr-3">CEO :</b> {{ company_info.ceo }}</v-list-content>
+                            </v-list-item>
+                            <v-divider />
+                            <v-list-item>
+                                <v-list-content><b class="mr-3">CTO :</b> {{ company_info.cto }}</v-list-content>
+                            </v-list-item>
+                            <v-divider />
+                            <v-list-item>
+                                <v-list-content><b class="mr-3">COO :</b> {{ company_info.coo }}</v-list-content>
+                            </v-list-item>
+                            <v-divider />
+                            <v-list-item>
+                                <v-list-content><b class="mr-3">CTO Propulsion :</b> {{ company_info.cto_propulsion }}</v-list-content>
+                            </v-list-item>
+                        </v-list>
+                    </v-card>
+                </v-col>
+                <v-col cols="12" sm="6" md="4" class="d-sm-flex">
+                    <v-card class="flex-fill">
+                        <h2 class="text-4xl px-4 py-3 blue-grey lighten-5">Company Stats</h2>
+                        <v-list class="py-0">
+                            <v-divider />
+                            <v-list-item>
+                                <v-list-content><b class="mr-3">Founded</b> {{ company_info.founded }}</v-list-content>
+                            </v-list-item>
+                            <v-divider />
+                            <v-list-item>
+                                <v-list-content><b class="mr-3">Employees</b> {{ company_info.employees }}</v-list-content>
+                            </v-list-item>
+                            <v-divider />
+                            <v-list-item>
+                                <v-list-content><b class="mr-3">Vehicles</b> {{ company_info.vehicles }}</v-list-content>
+                            </v-list-item>
+                            <v-divider />
+                            <v-list-item>
+                                <v-list-content><b class="mr-3">valuation </b> ${{ valuation }} </v-list-content>
+                            </v-list-item>
+                        </v-list>
+                    </v-card>
+                </v-col>
+            </v-row>
+            <v-footer app style="z-index: 2000">
+                <v-container class="d-flex py-1">
+                    <p class="mb-0 font-weight-medium">{{ `${company_info.headquarters.address}, ${company_info.headquarters.city}, ${company_info.headquarters.state}` }}</p>
+                    <v-spacer></v-spacer>
+                    <v-item-group multiple class="d-inline-flex">
+                        <v-item class="mr-3" v-for="[title, link] in Object.entries(company_info.links)" :key="title" style="width: 24px; height: 24px; line-height: 1">
+                            <a :href="link" target="_blank" class="w-6 h-6 inline-block" v-html="social_icons[title] || social_icons.website"></a>
+                        </v-item>
+                    </v-item-group>
+                </v-container>
+            </v-footer>
         </div>
         <p v-else-if="error" class="mt-64 text-red-500 font-bold text-center text-3xl sm:text-5xl">{{ error }}</p>
     </div>

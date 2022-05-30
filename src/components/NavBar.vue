@@ -1,68 +1,62 @@
 <template>
-    <v-app-bar app>
-        <nav role="navigation" class="block w-full bg-black shadow-lg py-3 sm:py-0">
-            <div class="mx-auto container px-4 py-0">
-                <div class="block text-center sm:text-left sm:flex items-center justify-between">
-                    <router-link to="/" class="mx-auto sm:mx-0 focus:outline-none flex items-center mt-0 sm:-mt-2 mb-3 sm:mb-0" style="width: 240px">
-                        <svg version="1.1" x="0px" y="0px" viewBox="0 0 400 50" class="fill-current">
-                            <title>SpaceX Logo</title>
-                            <g class="letter_s">
-                                <path
-                                    class="fill-white"
-                                    d="M37.5,30.5H10.9v-6.6h34.3c-0.9-2.8-3.8-5.4-8.9-5.4H11.4c-5.7,0-9,2.1-9,6.7v4.9c0,4,3.4,6.3,8.4,6.3h26.9v7H1.5
+    <v-app-bar app style="z-index: 2000">
+        <v-container class="py-0 fill-height">
+            <router-link to="/" class="d-flex" style="width: 240px">
+                <svg version="1.1" x="0px" y="0px" viewBox="0 0 400 50" class="fill-current">
+                    <title>SpaceX Logo</title>
+                    <g class="letter_s">
+                        <path
+                            class="fill-white"
+                            d="M37.5,30.5H10.9v-6.6h34.3c-0.9-2.8-3.8-5.4-8.9-5.4H11.4c-5.7,0-9,2.1-9,6.7v4.9c0,4,3.4,6.3,8.4,6.3h26.9v7H1.5
                       c0.9,3.8,3.8,5.8,9,5.8h27.1c5.7,0,8.5-2.2,8.5-6.9v-4.9C46.1,33.1,42.8,30.8,37.5,30.5z"
-                                />
-                            </g>
-                            <g class="letter_p">
-                                <path
-                                    class="fill-white"
-                                    d="M91.8,18.6H59v30.7h9.3V37.5h24.2c6.7,0,10.4-2.3,10.4-7.7v-3.4C102.8,21.4,98.6,18.6,91.8,18.6z M94.8,28.4
+                        />
+                    </g>
+                    <g class="letter_p">
+                        <path
+                            class="fill-white"
+                            d="M91.8,18.6H59v30.7h9.3V37.5h24.2c6.7,0,10.4-2.3,10.4-7.7v-3.4C102.8,21.4,98.6,18.6,91.8,18.6z M94.8,28.4
                       c0,2.2-0.4,3.4-4,3.4H68.3l0.1-8h22c4,0,4.5,1.2,4.5,3.3V28.4z"
-                                />
-                            </g>
-                            <g class="letter_a">
-                                <polygon class="fill-white" points="129.9,17.3 124.3,24.2 133.8,37.3 114,37.3 109.1,42.5 137.7,42.5 142.6,49.3 153.6,49.3 	" />
-                            </g>
-                            <g class="letter_c">
-                                <path
-                                    class="fill-white"
-                                    d="M171.4,23.9h34.8c-0.9-3.6-4.4-5.4-9.4-5.4h-26c-4.5,0-8.8,1.8-8.8,6.7v17.2c0,4.9,4.3,6.7,8.8,6.7h26.3
+                        />
+                    </g>
+                    <g class="letter_a">
+                        <polygon class="fill-white" points="129.9,17.3 124.3,24.2 133.8,37.3 114,37.3 109.1,42.5 137.7,42.5 142.6,49.3 153.6,49.3 	" />
+                    </g>
+                    <g class="letter_c">
+                        <path
+                            class="fill-white"
+                            d="M171.4,23.9h34.8c-0.9-3.6-4.4-5.4-9.4-5.4h-26c-4.5,0-8.8,1.8-8.8,6.7v17.2c0,4.9,4.3,6.7,8.8,6.7h26.3
                       c6,0,8.1-1.7,9.1-5.8h-34.8V23.9z"
-                                />
-                            </g>
-                            <g class="letter_e">
-                                <polygon class="fill-white" points="228.3,43.5 228.3,34.1 247,34.1 247,28.9 218.9,28.9 218.9,49.3 260.4,49.3 260.4,43.5 	" />
-                                <rect class="fill-white" x="219.9" y="18.6" width="41.9" height="5.4" />
-                            </g>
-                            <g class="letter_x">
-                                <path class="fill-white" d="M287.6,18.6H273l17.2,12.6c2.5-1.7,5.4-3.5,8-5L287.6,18.6z" />
-                                <path class="fill-white" d="M308.8,34.3c-2.5,1.7-5,3.6-7.4,5.4l13,9.5h14.7L308.8,34.3z" />
-                            </g>
-                            <g class="letter_swoosh">
-                                <path class="fill-white" d="M399,0.7c-80,4.6-117,38.8-125.3,46.9l-1.7,1.6h14.8C326.8,9.1,384.3,2,399,0.7L399,0.7z" />
-                            </g>
-                        </svg>
-                    </router-link>
-                    <v-spacer></v-spacer>
-                    <div class="flex justify-center sm:justify-start">
-                        <router-link to="/" class="font-bold border-b-2 border-transparent hover:border-gray-700 flex px-2 sm:px-5 items-center py-1 sm:py-6 text-sm leading-5 text-white hover:text-grey-300 hover:bg-gray-900 focus:outline-none transition duration-150 ease-in-out"
-                            >Launches</router-link
-                        >
-                        <router-link to="launchpads" class="font-bold border-b-2 border-transparent hover:border-gray-700 flex px-2 sm:px-5 items-center py-1 sm:py-6 text-sm leading-5 text-white hover:text-grey-300 hover:bg-gray-900 focus:outline-none transition duration-150 ease-in-out"
-                            >Launchpads</router-link
-                        >
-                        <router-link to="/companyinfo" class="font-bold border-b-2 border-transparent hover:border-gray-700 flex px-2 sm:px-5 items-center py-1 sm:py-6 text-sm leading-5 text-white hover:text-grey-300 hover:bg-gray-900 focus:outline-none transition duration-150 ease-in-out"
-                            >Company Info</router-link
-                        >
-                    </div>
-                </div>
+                        />
+                    </g>
+                    <g class="letter_e">
+                        <polygon class="fill-white" points="228.3,43.5 228.3,34.1 247,34.1 247,28.9 218.9,28.9 218.9,49.3 260.4,49.3 260.4,43.5 	" />
+                        <rect class="fill-white" x="219.9" y="18.6" width="41.9" height="5.4" />
+                    </g>
+                    <g class="letter_x">
+                        <path class="fill-white" d="M287.6,18.6H273l17.2,12.6c2.5-1.7,5.4-3.5,8-5L287.6,18.6z" />
+                        <path class="fill-white" d="M308.8,34.3c-2.5,1.7-5,3.6-7.4,5.4l13,9.5h14.7L308.8,34.3z" />
+                    </g>
+                    <g class="letter_swoosh">
+                        <path class="fill-white" d="M399,0.7c-80,4.6-117,38.8-125.3,46.9l-1.7,1.6h14.8C326.8,9.1,384.3,2,399,0.7L399,0.7z" />
+                    </g>
+                </svg>
+            </router-link>
+
+            <v-spacer></v-spacer>
+            <div>
+                <v-btn to="/" elevation="0" class="mx-2">Launches</v-btn>
+                <v-btn to="/launchpads" elevation="0" class="mx-2">Launchpads</v-btn>
+                <v-btn to="/companyinfo" elevation="0" class="mx-2">Company Info</v-btn>
             </div>
-        </nav>
+        </v-container>
     </v-app-bar>
 </template>
 
 <script>
 export default {
-    name: "nav-bar"
+    name: "nav-bar",
+    data: () => ({
+        links: ["Dashboard", "Messages", "Profile", "Updates"]
+    })
 };
 </script>
